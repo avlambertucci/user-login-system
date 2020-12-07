@@ -1,29 +1,28 @@
 
-$(document).ready(function(){
- 
-  $("#formSig").submit(function(e){
-    
-    console.log('teste')
-  
 
-    let $form = $(this)
-    let data = $form.serialize()
-    console.log(form)
-    console.log(data)
+$("#formSig").submit(function(e){
   
-    fetch('/user/signup', { 
-      type: 'POST',
-      data: data,
-      dataType: 'json',
-      success: function(response) {
-        console.log(response)
-      },
-      error: function(response) {
-        console.log(response)
-      }
+  var $form = $(this)
+  var $error = $form.find(".error")
+  var data = $form.serialize()
+  console.log($form)
   
-    })
-    e.preventDefault();
-  
-  })
+  console.log(data)
+  $.ajax({
+    url: "/user/signup",
+    type: "POST",
+    data: data,
+    dataType: "json",
+    success: function(response) {
+      console.log(response)
+    },
+    error: function(response) {
+      console.log(response)
+      $error.text(response.responseJSON.error).removeClass("error--hidden")
+    }
+
+  });
+  e.preventDefault();
 });
+
+
