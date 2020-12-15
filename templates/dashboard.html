@@ -9,14 +9,14 @@
       <a class="btn btn--secondary" href="/user/signout">Signout</a>
     </div>
   </div>
-</div>
-<div class="card">
-  <h2 class="center">Your Info</h2>
-  <p>
-    <strong>ID:</strong> {{session['user']['_id']}}<br>
-    <strong>Name:</strong> {{session['user']['name']}}<br>
-    <strong>Email:</strong> {{session['user']['email']}}<br>
-  </p>
+  <div class="card">
+    <h2 class="center">Your Info</h2>
+    <p>
+      <strong>ID:</strong> {{session['user']['_id']}}<br>
+      <strong>Name:</strong> {{session['user']['name']}}<br>
+      <strong>Email:</strong> {{session['user']['email']}}<br>
+    </p>
+  </div>
 </div>
   
 {% endblock %}

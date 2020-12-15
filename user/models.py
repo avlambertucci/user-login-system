@@ -10,6 +10,8 @@ class User:
     session['logged_in'] = True
     session['user'] = user
     return jsonify(user), 200
+  
+
 
 
   def signup(self):
@@ -33,3 +35,13 @@ class User:
   def signout(self):
     session.clear()
     return redirect('/')
+
+  def login(self):
+    # Find one oser with the same form email in db
+    user = users_collection.find_one({
+      "email": request.form.get('email')
+    })
+    # Use passlib to validate the request form password and the user's password found in db
+    if user and pbkdf2_sha256.verify(request.form.get('password'), user['password']):
+      return self.start_session(user)
+    return jsonify({"error": "Invalid login credentials"}), 401
