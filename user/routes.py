@@ -6,3 +6,8 @@ from user.models import User
 def signup():
   
   return User().signup()
+
+@app.route('/user/signout', methods=['GET'])
+def signout():
+  return User().signout()
+

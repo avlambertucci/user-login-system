@@ -15,6 +15,7 @@ $("#formSig").submit(function(e){
     dataType: "json",
     success: function(response) {
       console.log(response)
+      window.location.href = "/dashboard/";
     },
     error: function(response) {
       console.log(response)
